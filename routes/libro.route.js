@@ -1,23 +1,11 @@
-/*
-/autores/:id/libros
-    GET: Devuelve todos los libros de un autor
-    POST: Agrega un nuevo libro al autor
-
-/autores/:id/libros/:idLibro
-    GET: Devuelve el libro con el id indicado del autor
-    POST: Modifica el libro con el id indicado del autor
-    DELETE: Elimina el libro con el id indicado del autor
-*/
-
+//IMPORTO MODULOS
 const autorService = require("../services/autor.service")
-const dataStore = require("../db/datastore")
 const libroService = require ('../services/libros.service')
 
+//EXPORTO LOS MODULOS
 module.exports = function (server) {
 
     server.get('/autores/:id/libros', (req, res) =>{
-        //id del autor
-        //devolver el Array libros
         let data = req.params.id
         try {
             let resultado = autorService.getAutorById(data)
@@ -39,4 +27,34 @@ module.exports = function (server) {
         }
     })
 
+    server.get('/autores/:id/libros/:idLibro', (req,res)=>{
+        let data = req.params
+        try {
+            let resultado = libroService.getLibroByAutor(data)
+            res.status(200).json(resultado)
+        }catch (error) {
+            res.status(404).json({error: error.message})
+        }
+    })
+
+    server.put('/autores/:id/libros/:idLibro', (req,res)=>{
+        let libro = req.body
+        let data = req.params
+        try {
+            let resultado = libroService.modificaLibro(libro, data)
+            res.status(200).json(resultado)
+        }catch (error) {
+            res.status(404).json({error: error.message})
+        }
+    })
+
+    server.delete('/autores/:id/libros/:idLibro', (req,res)=>{
+        let data = req.params
+        try {
+            let resultado = libroService.eliminaLibro(data)
+            res.status(204).send(resultado)
+        }catch (error) {
+            res.status(404).json({error: error.message})
+        }
+    })
 }
