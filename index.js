@@ -82,7 +82,7 @@ server.use(express.json())
 
 
 server.get("/ping", (req, res) => {
-    res.send("pong")
+    res.send("pong");
 })
 
 server.get("/pong", (req, res) => {

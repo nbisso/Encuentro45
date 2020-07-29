@@ -16,5 +16,11 @@ module.exports = {
         this.autores.push(autor)
         idAutor++;
         return autor
+    },
+    agregarLibro(libro, autor) {
+        libro.id = 1234124
+        idLibro++
+        return libro
     }
+
 }
