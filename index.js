@@ -82,8 +82,11 @@ server.use(express.json())
 
 
 server.get("/ping", (req, res) => {
-    res.headersSent
     res.send("pong")
+})
+
+server.get("/pong", (req, res) => {
+    res.send("ping")
 })
 
 autorRoute(server)
