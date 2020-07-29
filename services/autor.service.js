@@ -25,3 +25,15 @@ module.exports.crearAutor = function (autor) {
 
     return dataStore.agregarAutor(autor);
 }
+
+module.exports.getAutorById = function (idAutor) {
+    let buscarAutorporId = dataStore.autores.find(r => r.id == idAutor)
+
+    if(buscarAutorporId){
+        return buscarAutorporId
+
+    }else {
+        throw new Error ('No existe el autor que estas buscando')
+    }
+}
+

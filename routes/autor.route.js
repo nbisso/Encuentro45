@@ -28,4 +28,15 @@ module.exports = function (server) {
         }
     })
 
+    server.get('/autores/:id', (req,res)=>{
+        let idAutor = req.params.id
+        try {
+            let resultado = autorService.getAutorById(idAutor)
+            res.status(200).json(resultado)
+
+        }catch (error) {
+            res.status(404).json({error: error.message})
+        }
+    })
+
 }
