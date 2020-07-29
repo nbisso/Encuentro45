@@ -18,7 +18,8 @@ module.exports = {
         return autor
     },
     agregarLibro(libro, autor) {
-        libro.id = 1234124
+        libro.id = idLibro
+        autor.libros.push(libro)
         idLibro++
         return libro
     }

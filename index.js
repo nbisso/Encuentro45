@@ -73,6 +73,7 @@ Validaciones - Libros
  *
  */
 const autorRoute = require("./routes/autor.route")
+const libroRoute = require('./routes/libro.route')
 
 const express = require("express")
 
@@ -90,6 +91,7 @@ server.get("/pong", (req, res) => {
 })
 
 autorRoute(server)
+libroRoute(server)
 
 server.use((err, req, res, next) => {
     // console.log(err)
